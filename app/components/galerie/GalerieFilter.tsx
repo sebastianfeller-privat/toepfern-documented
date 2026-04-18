@@ -24,22 +24,22 @@ export default function GalerieFilter({ projekte, kategorien }: GalerieFilterPro
 
   return (
     <div>
-      {/* Filter */}
-      <div className="flex gap-8 mb-16 justify-center">
-        {["Alle", ...kategorien].map((kat) => (
-          <button
-            key={kat}
-            onClick={() => setAktiv(kat)}
-            className={`text-xs tracking-[0.3em] uppercase transition-colors duration-300 pb-1 capitalize ${
-              aktiv === kat
-                ? "text-stone-800 border-b border-stone-800"
-                : "text-stone-400 hover:text-stone-600"
-            }`}
-          >
-            {kat}
-          </button>
-        ))}
-      </div>
+    {/* Filter */}
+    <div className="flex flex-wrap gap-4 mb-16 justify-center">
+    {["Alle", ...kategorien].map((kat) => (
+        <button
+        key={kat}
+        onClick={() => setAktiv(kat)}
+        className={`text-xs tracking-[0.3em] uppercase transition-all duration-300 px-4 py-2 rounded-full capitalize ${
+            aktiv === kat
+            ? "bg-stone-800 text-white"
+            : "text-stone-400 hover:text-stone-600"
+        }`}
+        >
+        {kat}
+        </button>
+    ))}
+    </div>
 
       {/* Grid */}
       <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-12">

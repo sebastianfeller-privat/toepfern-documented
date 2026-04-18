@@ -59,13 +59,28 @@ export default function Nav() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-12">
+        <div className={`fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-12 transition-opacity duration-300 ${
+        menuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}>
         <button
-            onClick={() => setMenuOpen(false)}
-            className="absolute top-6 right-8 w-8 h-8 flex items-center justify-center"
+        onClick={() => setMenuOpen(prev => !prev)}
+        className="relative w-8 h-8 flex items-center justify-center z-50"
         >
-            <span className="block w-5 h-px bg-stone-900 rotate-45 absolute" />
-            <span className="block w-5 h-px bg-stone-900 -rotate-45 absolute" />
+        <span
+            className={`block absolute w-6 h-px bg-stone-900 transition-transform duration-300 ${
+            menuOpen ? "rotate-45" : "-translate-y-2"
+            }`}
+        />
+        <span
+            className={`block absolute w-6 h-px bg-stone-900 transition-opacity duration-300 ${
+            menuOpen ? "opacity-0" : "opacity-100"
+            }`}
+        />
+        <span
+            className={`block absolute w-6 h-px bg-stone-900 transition-transform duration-300 ${
+            menuOpen ? "-rotate-45" : "translate-y-2"
+            }`}
+        />
         </button>
         {["Home", "Galerie", "Kurse"].map((item) => (
             <Link

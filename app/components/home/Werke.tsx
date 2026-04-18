@@ -35,32 +35,39 @@ export default function Werke() {
           Ausgewählte Werke
         </motion.p>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="font-serif text-4xl md:text-5xl text-white tracking-wide mb-16 text-center"
-        >
-          Aus der Werkstatt
-        </motion.h2>
+        {/* Mask-Reveal Heading */}
+        <div className="overflow-hidden mb-16 text-center">
+          <motion.h2
+            initial={{ y: "100%" }}
+            whileInView={{ y: "0%" }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="font-serif text-4xl md:text-5xl text-white tracking-wide"
+          >
+            Aus der Werkstatt
+          </motion.h2>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {WERKE.map((werk, index) => (
             <motion.div
               key={werk.titel}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8 }}
-              className="bg-stone-800 p-8 cursor-pointer group"
+              transition={{
+                duration: 0.9,
+                delay: index * 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ y: -10, transition: { duration: 0.3, ease: "easeOut" } }}
+              className="bg-stone-800 p-8 cursor-pointer group border-b-2 border-transparent hover:border-stone-500 transition-colors duration-500"
             >
               {/* Bild Platzhalter */}
               <div className="w-full h-64 bg-stone-700 mb-8 overflow-hidden">
                 <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
                   className="w-full h-full bg-stone-600"
                 />
               </div>

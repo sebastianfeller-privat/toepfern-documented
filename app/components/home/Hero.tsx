@@ -1,19 +1,45 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-stone-900">
-      
-      {/* Hintergrund */}
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 to-stone-900/80 z-10" />
-      
-      {/* Hintergrundbild Platzhalter */}
-      <div className="absolute inset-0 bg-stone-700" />
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
 
-      {/* Inhalt */}
-      <div className="relative z-20 text-center text-white px-8">
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-stone-900"
+    >
+
+        {/* Parallax Hintergrund */}
+        <motion.div
+        style={{ y: bgY }}
+        className="absolute inset-0 scale-125"
+        >
+        <img
+            src="/home/main-1.png"  // oder .png / .webp – Dateiendung anpassen!
+            alt=""
+            className="w-full h-full object-cover"
+        />
+        </motion.div>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 to-stone-900/80 z-10" />
+
+      {/* Inhalt mit Parallax */}
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-20 text-center text-white px-8"
+      >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,9 +59,10 @@ export default function Hero() {
         </motion.h1>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
+          style={{ originX: 0.5 }}
           className="w-16 h-px bg-stone-400 mx-auto mb-8"
         />
 
@@ -47,7 +74,7 @@ export default function Hero() {
         >
           Töpfern · Kurse · Galerie
         </motion.p>
-      </div>
+      </motion.div>
 
       {/* Scroll Indikator */}
       <motion.div
@@ -63,7 +90,6 @@ export default function Hero() {
           className="w-px h-8 bg-stone-400"
         />
       </motion.div>
-
     </section>
   );
 }

@@ -11,7 +11,7 @@ function getBilder() {
     const dateien = fs.readdirSync(kategoriePfad);
 
     return dateien.map((datei) => ({
-      titel: datei.replace(".jpeg", "").replace("-", " "),
+      titel: datei.replace(".jpeg", "").replace("-", " #"),
       kategorie: kategorie,
       bildPfad: `/galerie/${kategorie}/${datei}`,
     }));

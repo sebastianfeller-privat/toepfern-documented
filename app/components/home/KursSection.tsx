@@ -2,20 +2,27 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function KursSection() {
   return (
     <section className="bg-stone-800 py-32 px-8">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
-        {/* Bild Platzhalter */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="h-96 bg-stone-700"
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="relative h-[600px] overflow-hidden"
+        >
+        <Image
+            src="/home/namor.jpeg"
+            alt="Namor beim Töpfern"
+            fill
+            className="object-cover object-center"
         />
+        </motion.div>
 
         {/* Text */}
         <motion.div

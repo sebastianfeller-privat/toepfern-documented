@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-stone-900">
+    <section className="relative min-h-screen h-screen flex items-center justify-center overflow-hidden bg-stone-900">
       
       {/* Hintergrund */}
       <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 to-stone-900/80 z-10" />
@@ -28,7 +27,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="font-serif text-6xl md:text-8xl tracking-widest uppercase mb-8"
+          className="font-serif text-5xl md:text-8xl tracking-widest uppercase mb-8"
         >
           Namor
         </motion.h1>

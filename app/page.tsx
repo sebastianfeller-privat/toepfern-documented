@@ -9,10 +9,10 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <KursSection />
       <Philosophie />
       <Werke />
       <Prozess />
-      <KursSection />
       <Zitat />
     </main>
   );
